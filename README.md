@@ -26,11 +26,13 @@ F2A is developed by a team of developer who contribute their work to the project
 
 **1. Eric Lee** (Hong Le), Senior Developer (Vietnam): creator of F2A interface and its architect, active maintainer of F2A who manages issues.
 
-* Twitter: [@levanhong05](https://twitter.com/levanhong05)
+* Facebook: [Eric Lee](https://www.facebook.com/levanhong05)
+
+* Twitter: [Eric Lee](https://twitter.com/levanhong05)
 
 * Github: [Eric Lee](https://github.com/levanhong05)
 
-* LinkedIn: [https://vi.linkedin.com/in/levanhong05](https://vi.linkedin.com/in/levanhong05)
+* LinkedIn: [Eric Lee](https://vi.linkedin.com/in/levanhong05)
 
 > “Good design is obvious. Great design is transparent.” – Joe Sparano
 
@@ -43,8 +45,8 @@ F2A is developed by a team of developer who contribute their work to the project
 
 ## License Information
 
-[see LICENSE ( The GNU General Public License v3)] (https://github.com/levanhong05/F2AGenerator/blob/master/LICENSE)
+[see LICENSE ( The GNU General Public License v3.0)] (https://github.com/levanhong05/F2AGenerator/blob/master/LICENSE)
 
 Images downloaded from [https://www.flaticon.com/](https://www.flaticon.com/) - then renamed to match Qt High DPI images- and project-specific
 
-[see /images/LICENSE ( cc-by )] (https://github.com/levanhong05/F2AGenerator/blob/master/entry/images/LICENSE)
+[see /images/LICENSE ( cc-by )] (https://github.com/levanhong05/F2AGenerator/blob/master/images/LICENSE)
