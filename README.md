@@ -43,8 +43,8 @@ F2A is developed by a team of developer who contribute their work to the project
 
 ## License Information
 
-[see LICENSE ( The GNU General Public License v3)] (https://github.com/levanhong05/F2AGenerator/blob/master/LICENSE)
+[see LICENSE ( The GNU General Public License v3.0)] (https://github.com/levanhong05/F2AGenerator/blob/master/LICENSE)
 
 Images downloaded from [https://www.flaticon.com/](https://www.flaticon.com/) - then renamed to match Qt High DPI images- and project-specific
 
-[see /images/LICENSE ( cc-by )] (https://github.com/levanhong05/F2AGenerator/blob/master/entry/images/LICENSE)
+[see /images/LICENSE ( cc-by )] (https://github.com/levanhong05/F2AGenerator/blob/master/images/LICENSE)
