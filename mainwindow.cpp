@@ -25,9 +25,10 @@ modification, are permitted provided that the following conditions are met:
 #include <QFileDialog>
 #include <QStyleFactory>
 
-#include "parser.h"
 #include "setting.h"
 #include "aboutdialog.h"
+
+#include "sourcenode.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -109,6 +110,9 @@ void MainWindow::on_actionOpen_triggered()
         if (file.open(QIODevice::ReadOnly)) {
             ui->txtSourceCode->setPlainText(file.readAll());
         }
+
+        //SourceNode *node = new SourceNode();
+        //node->loadFromFile(fileName);
     }
 }
 

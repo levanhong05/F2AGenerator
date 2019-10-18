@@ -175,15 +175,7 @@
               <height>665</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_9">
-             <item>
-              <widget class="QQuickWidget" name="quickWidget">
-               <property name="resizeMode">
-                <enum>QQuickWidget::SizeRootObjectToView</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <layout class="QVBoxLayout" name="verticalLayout_9"/>
            </widget>
           </widget>
          </item>
@@ -328,13 +320,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>QQuickWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">QtQuickWidgets/QQuickWidget</header>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>

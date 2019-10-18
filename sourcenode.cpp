@@ -267,41 +267,40 @@ void SourceNode::loadFromFile(QString filename)
     if (inputFile.open(QIODevice::ReadOnly)) {
         QTextStream in(&inputFile);
 
+        bool isMultiLineComment = false;
+
         while (!in.atEnd()) {
-            QString line = in.readLine();
-            content.append(line + "\n");
+            QString line = in.readLine().trimmed().remove("\t");
+
+            if (line.startsWith("//")) {
+                continue;
+            } else if (line.startsWith("/*")) {
+                isMultiLineComment = true;
+                continue;
+            } else if (line.startsWith("*/")) {
+                isMultiLineComment = false;
+                continue;
+            }
+
+            if (!isMultiLineComment) {
+                content.append(line + "\n");
+            }
         }
 
-        inputFile.close();
+       inputFile.close();
     }
 
     this->loadFromString(content);
 }
 
-void SourceNode::loadFromString(QString foamContent)
+void SourceNode::loadFromString(QString sourceContent)
 {
     QRegExp inlineCommentExpr("//.*");
     QRegExp multiLinesCommentExpr("/\\*.*");
     QRegExp endMultiLinesCommentExpr("\\*/");
     QRegExp sepExpr("\\s+");
-    // table
-    QRegExp tableExpr(
-        "\\(\\s*[0-9]\\s*\\(\\s*(\\-?[0-9]*\\.?[0-9]*\\s*)+\\s*\\)\\s*\\)");
-    // matrix
-    QRegExp matrixExpr(
-        "(\\(\\s*(\\(\\s*(\\-?[0-9]*\\.?[0-9]*\\s*)+\\s*\\)\\s*)*\\s*\\))");
-    foamContent.replace(matrixExpr, "<Matrix>\\1<Matrix>");
-    QStringList listMatrix = foamContent.split("<Matrix>");
 
-    for (int i = 0; i < listMatrix.length(); i++) {
-        if (matrixExpr.indexIn(listMatrix[i]) >= 0) {
-            listMatrix[i] = listMatrix[i].replace("\n", "");
-            listMatrix[i] = "&" + listMatrix[i];
-        }
-    }
-
-    foamContent = listMatrix.join("\n");
-    QTextStream stream(new QString(foamContent));
+    QTextStream stream(new QString(sourceContent));
     QStringList tokens;
     bool inBlockComment = false;
     QString line = stream.readLine();
@@ -332,14 +331,6 @@ void SourceNode::loadFromString(QString foamContent)
 
             if (line.startsWith("&")) {
                 tokens.append(line);
-                line = stream.readLine();
-                continue;
-            }
-
-            int tableLinePos = tableExpr.indexIn(line, 0);
-
-            if (tableLinePos >= 0) {
-                tokens.append("!\n" + line);
                 line = stream.readLine();
                 continue;
             }

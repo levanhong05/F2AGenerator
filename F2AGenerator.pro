@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui quick quickwidgets
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,14 +13,12 @@ TEMPLATE = app
 
 SOURCES +=  main.cpp\
             mainwindow.cpp \
-            parser.cpp \
             aboutdialog.cpp \
             setting.cpp \
             highlighter.cpp \
             sourcenode.cpp
 
 HEADERS  += mainwindow.h \
-            parser.h \
             aboutdialog.h \
             version.h \
             setting.h \

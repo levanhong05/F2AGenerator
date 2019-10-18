@@ -76,7 +76,7 @@ public:
 
     // reader
     void loadFromFile(QString filename);
-    void loadFromString(QString foamContent);
+    void loadFromString(QString sourceContent);
 
     // parser
     virtual SourceNode *parse(QStringList *tokens, SourceNode *node = 0, QStringList *lastTokens = 0);
