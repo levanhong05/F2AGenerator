@@ -20,7 +20,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QFrame" name="frameParameter">
+     <widget class="QFrame" name="frmContent">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -38,109 +38,101 @@
         <number>0</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <layout class="QVBoxLayout" name="leftLayout">
          <property name="leftMargin">
           <number>0</number>
          </property>
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <layout class="QVBoxLayout" name="codeTreeLayout">
            <property name="leftMargin">
             <number>0</number>
            </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
            <item>
-            <widget class="QGroupBox" name="grpCodeTree">
-             <property name="title">
+            <widget class="QLabel" name="lblCodeTree">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
               <string>Code Tree</string>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_5">
-              <property name="leftMargin">
-               <number>9</number>
+            </widget>
+           </item>
+           <item>
+            <widget class="QScrollArea" name="codeTreeScrollArea">
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="codeTreeScrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>613</width>
+                <height>316</height>
+               </rect>
               </property>
-              <property name="topMargin">
-               <number>6</number>
-              </property>
-              <property name="rightMargin">
-               <number>9</number>
-              </property>
-              <property name="bottomMargin">
-               <number>6</number>
-              </property>
-              <item>
-               <widget class="QScrollArea" name="scrollArea_2">
-                <property name="widgetResizable">
-                 <bool>true</bool>
-                </property>
-                <widget class="QWidget" name="scrollAreaWidgetContents_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>593</width>
-                   <height>311</height>
-                  </rect>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_7">
-                  <item>
-                   <widget class="QTreeWidget" name="wdgCodeTree">
-                    <column>
-                     <property name="text">
-                      <string notr="true">1</string>
-                     </property>
-                    </column>
-                   </widget>
-                  </item>
-                 </layout>
+              <layout class="QVBoxLayout" name="verticalLayout_7">
+               <item>
+                <widget class="QTreeWidget" name="codeTreeWidget">
+                 <column>
+                  <property name="text">
+                   <string notr="true">1</string>
+                  </property>
+                 </column>
                 </widget>
-               </widget>
-              </item>
-             </layout>
+               </item>
+              </layout>
+             </widget>
             </widget>
            </item>
           </layout>
          </item>
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_4">
+          <layout class="QVBoxLayout" name="sourceCodeLayout">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
            <item>
-            <widget class="QGroupBox" name="grpSourceCode">
-             <property name="title">
+            <widget class="QLabel" name="lblSourceCode">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
               <string>Source Code</string>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_6">
-              <property name="leftMargin">
-               <number>9</number>
+            </widget>
+           </item>
+           <item>
+            <widget class="QScrollArea" name="sourceCodeScrollArea">
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="sourceCodeScrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>613</width>
+                <height>315</height>
+               </rect>
               </property>
-              <property name="topMargin">
-               <number>6</number>
-              </property>
-              <property name="rightMargin">
-               <number>9</number>
-              </property>
-              <property name="bottomMargin">
-               <number>6</number>
-              </property>
-              <item>
-               <widget class="QScrollArea" name="scrollArea">
-                <property name="widgetResizable">
-                 <bool>true</bool>
-                </property>
-                <widget class="QWidget" name="scrollAreaWidgetContents">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>593</width>
-                   <height>310</height>
-                  </rect>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_8">
-                  <item>
-                   <widget class="QTextEdit" name="txtSourceCode"/>
-                  </item>
-                 </layout>
-                </widget>
-               </widget>
-              </item>
-             </layout>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <item>
+                <widget class="QTextEdit" name="txtSourceCode"/>
+               </item>
+              </layout>
+             </widget>
             </widget>
            </item>
           </layout>
@@ -148,60 +140,60 @@
         </layout>
        </item>
        <item>
-        <widget class="QGroupBox" name="grpChart">
-         <property name="title">
-          <string>Chart</string>
+        <layout class="QVBoxLayout" name="rightLayout">
+         <property name="leftMargin">
+          <number>0</number>
          </property>
-         <property name="flat">
-          <bool>false</bool>
+         <property name="topMargin">
+          <number>0</number>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <property name="leftMargin">
-           <number>9</number>
-          </property>
-          <property name="topMargin">
-           <number>6</number>
-          </property>
-          <property name="rightMargin">
-           <number>9</number>
-          </property>
-          <property name="bottomMargin">
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QScrollArea" name="scrollArea_3">
-            <property name="widgetResizable">
-             <bool>true</bool>
+         <item>
+          <widget class="QLabel" name="lblChart">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Chart</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QScrollArea" name="chartScrollArea">
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="chartScrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>615</width>
+              <height>665</height>
+             </rect>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents_3">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>597</width>
-               <height>662</height>
-              </rect>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_9">
-              <item>
-               <widget class="QQuickWidget" name="quickWidget">
-                <property name="resizeMode">
-                 <enum>QQuickWidget::SizeRootObjectToView</enum>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
+            <layout class="QVBoxLayout" name="verticalLayout_9">
+             <item>
+              <widget class="QQuickWidget" name="quickWidget">
+               <property name="resizeMode">
+                <enum>QQuickWidget::SizeRootObjectToView</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
-          </item>
-         </layout>
-        </widget>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
     </item>
     <item>
-     <widget class="QFrame" name="frameButton">
+     <widget class="QFrame" name="frmButton">
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
       </property>
@@ -340,7 +332,7 @@
   <customwidget>
    <class>QQuickWidget</class>
    <extends>QWidget</extends>
-   <header>QtQuickWidgets/QQuickWidget</header>
+   <header location="global">QtQuickWidgets/QQuickWidget</header>
   </customwidget>
  </customwidgets>
  <resources>

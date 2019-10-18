@@ -33,6 +33,9 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>30</number>
+      </property>
       <item>
        <widget class="QLabel" name="lblIcon">
         <property name="sizePolicy">
@@ -58,10 +61,13 @@
       <item>
        <widget class="QFrame" name="frameAuthor">
         <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+         <enum>QFrame::NoFrame</enum>
         </property>
         <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="leftMargin">

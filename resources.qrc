@@ -8,5 +8,6 @@
         <file>images/stop.png</file>
         <file>images/trash.png</file>
         <file>images/info.png</file>
+        <file>styles/stylesheet.qss</file>
     </qresource>
 </RCC>

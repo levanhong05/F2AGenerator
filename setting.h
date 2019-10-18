@@ -28,7 +28,7 @@ class Setting : public QObject
     Q_OBJECT
 
 public:
-    explicit Setting(QObject *parent = 0);
+    explicit Setting(QObject *parent = nullptr);
 
     QString read(QString key, QString group = "Components");
     void write(QString key, QString value, QString group = "Components");
