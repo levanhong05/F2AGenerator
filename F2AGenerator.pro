@@ -15,15 +15,17 @@ SOURCES +=  main.cpp\
             mainwindow.cpp \
             parser.cpp \
             aboutdialog.cpp \
-    setting.cpp \
-    highlighter.cpp
+            setting.cpp \
+            highlighter.cpp \
+            sourcenode.cpp
 
 HEADERS  += mainwindow.h \
             parser.h \
             aboutdialog.h \
             version.h \
-    setting.h \
-    highlighter.h
+            setting.h \
+            highlighter.h \
+            sourcenode.h
 
 FORMS    += mainwindow.ui \
             aboutdialog.ui
