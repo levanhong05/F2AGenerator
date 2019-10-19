@@ -97,26 +97,36 @@ void MainWindow::on_actionOpen_triggered()
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select Source"), path, tr("C/C++ Source File (*.c *.cpp)"));
 
     if (fileName.isEmpty()) {
+        _sourceName = "";
+
         return;
     }
 
-    if (QFile::exists(fileName)) {
-        path = fileName.mid(0, fileName.lastIndexOf("/"));
+    path = fileName.mid(0, fileName.lastIndexOf("/"));
 
-        settings.write(key, path, "Paths");
+    settings.write(key, path, "Paths");
 
-        QFile file(fileName);
+    _sourceName = fileName;
 
-        if (file.open(QIODevice::ReadOnly)) {
-            ui->txtSourceCode->setPlainText(file.readAll());
-        }
+    QFile file(fileName);
 
-        //SourceNode *node = new SourceNode();
-        //node->loadFromFile(fileName);
+    if (file.open(QIODevice::ReadOnly)) {
+        ui->txtSourceCode->setPlainText(file.readAll());
     }
 }
 
 void MainWindow::on_actionQuit_triggered()
 {
     qApp->exit();
+}
+
+void MainWindow::on_btnClose_clicked()
+{
+    qApp->exit();
+}
+
+void MainWindow::on_btnGenerate_clicked()
+{
+    SourceNode *node = new SourceNode();
+    node->loadFromFile(_sourceName);
 }

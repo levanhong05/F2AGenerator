@@ -23,20 +23,27 @@ modification, are permitted provided that the following conditions are met:
 
 #include <QChar>
 #include <QObject>
+#include <QStack>
 
 class SourceNode : public QObject
 {
     Q_OBJECT
 public:
-    static const int DATA_NODE = 0;
-    static const int BLOCK_COMMENT = 1;
-    static const int LINE_COMMENT = 2;
+    static const int META_NODE = 0;
+    static const int FUNCTION_NODE = 1;
+    static const int LOOP_NODE = 2;
+    static const int SWITCH_NODE = 3;
+    static const int CONDITION_NODE = 4;
+    static const int DATA_NODE = 5;
+    static const int PARAM_NODE = 6;
+    static const int BLOCK_COMMENT = 7;
+    static const int LINE_COMMENT = 8;
 
-    SourceNode(QString name = "", QString value = "", int nt = DATA_NODE);
-    SourceNode(QString name, QList<SourceNode *> childs, QString value = "", int nt = DATA_NODE);
+    SourceNode(QString name = "", QString value = "", int nt = FUNCTION_NODE);
+    SourceNode(QString name, QList<SourceNode *> childs, QString value = "", int nt = FUNCTION_NODE);
     SourceNode(SourceNode *clone);
 
-    SourceNode *create(QString name = "", QString value = "", int nt = DATA_NODE);
+    SourceNode *create(QString name = "", QString value = "", int nt = FUNCTION_NODE);
 
     ~SourceNode();
 
@@ -76,15 +83,14 @@ public:
 
     // reader
     void loadFromFile(QString filename);
-    void loadFromString(QString sourceContent);
 
     // parser
-    virtual SourceNode *parse(QStringList *tokens, SourceNode *node = 0, QStringList *lastTokens = 0);
+    virtual SourceNode *parse(QStringList *tokens, SourceNode *node = nullptr, QStack<QString> operation = QStack<QString>(), QStringList *lastTokens = nullptr);
 
     // writer | formater
     virtual QString saveToString();
     virtual void saveToFile(QString filename);
-    virtual QStringList format(SourceNode *node = 0, int level = 0);
+    virtual QStringList format(SourceNode *node = nullptr, int level = 0);
 
     // query utils
     SourceNode *get(QString path);

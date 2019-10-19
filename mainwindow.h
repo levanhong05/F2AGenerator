@@ -44,6 +44,10 @@ private slots:
 
     void on_actionQuit_triggered();
 
+    void on_btnClose_clicked();
+
+    void on_btnGenerate_clicked();
+
 public slots:
 
 private:
@@ -52,6 +56,8 @@ private:
     Ui::MainWindow *ui;
 
     Highlighter *_highlighter;
+
+    QString _sourceName;
 
 };
 
