@@ -18,53 +18,31 @@ modification, are permitted provided that the following conditions are met:
 **
 ****************************************************************************/
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef TREEITEM_H
+#define TREEITEM_H
 
-#include <QMainWindow>
-#include <QTreeWidget>
+#include <QVariant>
+#include <QVector>
 
-#include "highlighter.h"
-
-#include "sourcenode.h"
-
-namespace Ui
+class TreeItem
 {
-class MainWindow;
-}
-
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit TreeItem(const QVector<QVariant> &data, TreeItem *parentItem = nullptr);
+    ~TreeItem();
 
-private slots:
-    void on_actionAbout_triggered();
+    void appendChild(TreeItem *child);
 
-    void on_actionOpen_triggered();
-
-    void on_actionQuit_triggered();
-
-    void on_btnClose_clicked();
-
-    void on_btnGenerate_clicked();
-
-public slots:
+    TreeItem *child(int row);
+    int childCount() const;
+    int columnCount() const;
+    QVariant data(int column) const;
+    int row() const;
+    TreeItem *parentItem();
 
 private:
-    bool parseTree(SourceNode *node);
-
-    void addTreeChild(SourceNode *node, QTreeWidgetItem *parent);
-
-private:
-    Ui::MainWindow *ui;
-
-    Highlighter *_highlighter;
-
-    QString _sourceName;
-
+    QVector<TreeItem*> m_childItems;
+    QVector<QVariant> m_itemData;
+    TreeItem *m_parentItem;
 };
 
-#endif // MAINWINDOW_H
+#endif // TREEITEM_H

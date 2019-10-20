@@ -25,10 +25,11 @@ modification, are permitted provided that the following conditions are met:
 #include <QFileDialog>
 #include <QStyleFactory>
 
+#include "treeitem.h"
+#include "treemodel.h"
+
 #include "setting.h"
 #include "aboutdialog.h"
-
-#include "sourcenode.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,6 +46,8 @@ MainWindow::MainWindow(QWidget *parent) :
     font.setPointSize(10);
 
     ui->txtSourceCode->setFont(font);
+
+    ui->codeTreeWidget->header()->setSectionResizeMode(0, QHeaderView::Stretch);
 
 //    QFile styleFile(":/flowchart/styles/stylesheet.qss");
 //    styleFile.open(QFile::ReadOnly);
@@ -129,4 +132,58 @@ void MainWindow::on_btnGenerate_clicked()
 {
     SourceNode *node = new SourceNode();
     node->loadFromFile(_sourceName);
+
+    parseTree(node);
+}
+
+bool MainWindow::parseTree(SourceNode *node)
+{
+    //TreeModel model(node);
+
+    //ui->codeTreeView->setModel(&model);
+    //ui->codeTreeView->update();
+
+    ui->codeTreeWidget->clear();
+
+    ui->codeTreeWidget->setColumnCount(3);
+    ui->codeTreeWidget->setHeaderLabels(QStringList() << tr("Name") << tr("Value") << tr("Type"));
+
+    QList<QTreeWidgetItem *> items;
+
+    QTreeWidgetItem *rootItem = new QTreeWidgetItem(ui->codeTreeWidget, QStringList() << "root");
+
+    ui->codeTreeWidget->addTopLevelItem(rootItem);
+
+    addTreeChild(node, rootItem);
+
+    ui->codeTreeWidget->expandAll();
+
+    return true;
+}
+
+void MainWindow::addTreeChild(SourceNode *node, QTreeWidgetItem *parent)
+{
+    int index = 0;
+
+    while (index < node->childsCount()) {
+        QTreeWidgetItem *item = new QTreeWidgetItem();
+
+        SourceNode *child = node->childAt(index);
+
+        item->setText(0, child->name());
+        item->setText(1, child->value());
+        item->setText(2, (child->nodeType() == SourceNode::FUNCTION_NODE ? tr("Function") :
+                           child->nodeType() == SourceNode::SWITCH_NODE ? tr("Switch") :
+                           child->nodeType() == SourceNode::LOOP_NODE ? tr("Loop") :
+                           child->nodeType() == SourceNode::CONDITION_NODE ? tr("Condition") :
+                           child->nodeType() == SourceNode::PARAM_NODE ? tr("Parameters") : tr("Data")));
+
+        if (child->hasChilds()) {
+            addTreeChild(child, item);
+        }
+
+        parent->addChild(item);
+
+        index++;
+    }
 }

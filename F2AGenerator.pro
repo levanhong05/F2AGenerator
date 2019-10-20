@@ -16,10 +16,14 @@ SOURCES +=  main.cpp\
             aboutdialog.cpp \
             setting.cpp \
             highlighter.cpp \
-            sourcenode.cpp
+            sourcenode.cpp \
+            treeitem.cpp \
+            treemodel.cpp
 
 HEADERS  += mainwindow.h \
             aboutdialog.h \
+            treeitem.h \
+            treemodel.h \
             version.h \
             setting.h \
             highlighter.h \

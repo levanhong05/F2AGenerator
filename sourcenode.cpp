@@ -196,7 +196,7 @@ int SourceNode::index()
 
 SourceNode *SourceNode::childAt(int index)
 {
-    return this->_childs.at(index - 1);
+    return this->_childs.at(index);
 }
 
 QString SourceNode::path()
