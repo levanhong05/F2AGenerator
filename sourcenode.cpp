@@ -283,17 +283,9 @@ void SourceNode::loadFromFile(QString filename)
                 continue;
             }
 
-            const QString metaPatterns[] = {
-                QStringLiteral("\\b#include\\b"), QStringLiteral("\\b#define\\b"), QStringLiteral("\\b#using\\b"),
-                QStringLiteral("\\b#if\\b"), QStringLiteral("\\b#elif\\b"), QStringLiteral("\\b#else\\b"),
-                QStringLiteral("\\b#endif\\b"), QStringLiteral("\\b#ifdef\\b"), QStringLiteral("\\b#ifndef\\b"),
-                QStringLiteral("\\b#import\\b"), QStringLiteral("\\b#error\\b"), QStringLiteral("\\b#line\\b"),
-                QStringLiteral("\\b#undef\\b")
-            };
-
             QStringList tokens = line.split(" ", QString::SkipEmptyParts);
 
-            if (!tokens.isEmpty() && metaPatterns->contains(tokens.first())) {
+            if (!tokens.isEmpty() && line.contains(QRegExp("^(#include|#define|#using|#if|#elif|#else|#endif|#ifdef|#ifndef|#undef|#import|#error|#line) .+"))) {
                 continue;
             }
 
@@ -314,11 +306,6 @@ SourceNode *SourceNode::parse(QStringList *tokens, SourceNode *node, QStack<QStr
         node = new SourceNode();
         node->setName("root");
     }
-
-    const QString typePatterns[] = {
-        QStringLiteral("\\bvoid\\b"), QStringLiteral("\\bbool\\b"), QStringLiteral("\\bint\\b"),
-        QStringLiteral("\\bfloat\\b"), QStringLiteral("\\blong\\b"), QStringLiteral("\\bdouble\\b")
-    };
 
     if (lastTokens == nullptr) {
         lastTokens = new QStringList();
@@ -342,9 +329,21 @@ SourceNode *SourceNode::parse(QStringList *tokens, SourceNode *node, QStack<QStr
             operation.pop();
         }
 
+        if (token == "{") {
+            continue;
+        }
+
+        if (token == "}") {
+            if (operation.isEmpty()) {
+                return node;
+            } else {
+                continue;
+            }
+        }
+
         QStringList values = token.split(" ", QString::SkipEmptyParts);
 
-        if (!values.isEmpty() && typePatterns->contains(values.first()) && !token.contains("=")) {
+        if (!values.isEmpty() && token.contains(QRegExp("^(void|int|bool|float|double|long) .+")) && !token.contains("=")) {
             if (token.endsWith(";")) {
                 continue;
             } else {
@@ -438,6 +437,12 @@ SourceNode *SourceNode::parse(QStringList *tokens, SourceNode *node, QStack<QStr
                     }
 
                     SourceNode *child = new SourceNode(key, value);
+                    child->setNodeType(DATA_NODE);
+
+                    node->addChildNode(child);
+                } else {
+                    token = token.remove(";");
+                    SourceNode *child = new SourceNode(token, "");
                     child->setNodeType(DATA_NODE);
 
                     node->addChildNode(child);
