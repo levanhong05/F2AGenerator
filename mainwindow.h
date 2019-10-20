@@ -57,6 +57,10 @@ private slots:
 public slots:
     void selectLanguage(QString language);
 
+protected:
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent*);
+
 private:
     bool parseTree(SourceNode *node);
 

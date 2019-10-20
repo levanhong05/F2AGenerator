@@ -25,9 +25,6 @@ modification, are permitted provided that the following conditions are met:
 #include <QFileDialog>
 #include <QStyleFactory>
 
-#include "treeitem.h"
-#include "treemodel.h"
-
 #include "setting.h"
 
 #include "aboutdialog.h"
@@ -115,8 +112,28 @@ void MainWindow::selectLanguage(QString language)
     }
 
     qApp->installTranslator(&_translator);
+}
 
-    ui->retranslateUi(this);
+void MainWindow::changeEvent(QEvent *event)
+{
+    if (event) {
+        switch (event->type()) {
+            // this event is send if a translator is loaded
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                break;
+
+            // this event is send, if the system, language changes
+            case QEvent::LocaleChange: {
+                QString locale = QLocale::system().name();
+
+                selectLanguage(locale);
+            }
+            break;
+        }
+     }
+
+     QMainWindow::changeEvent(event);
 }
 
 void MainWindow::on_actionAbout_triggered()

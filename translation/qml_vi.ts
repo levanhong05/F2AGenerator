@@ -36,7 +36,7 @@
     <message>
         <location filename="../aboutdialog.ui" line="166"/>
         <source>&lt;html&gt;&lt;body&gt;Copyright © 2019 by &lt;a href=&quot;https://github.com/levanhong05&quot;&gt;Eric Lee&lt;/a&gt;. All rights reserved.&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;body&gt;Bản quyền © 2019 bởi &lt;a href=&quot;https://github.com/levanhong05&quot;&gt;Eric Lee&lt;/a&gt;. Tất cả các quyền.&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;body&gt;Bản quyền © 2019 bởi &lt;a href=&quot;https://github.com/levanhong05&quot;&gt;Eric Lee&lt;/a&gt;. Tất cả các quyền được bảo lưu.&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
