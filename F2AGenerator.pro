@@ -12,6 +12,7 @@ TARGET = F2AGenerator
 TEMPLATE = app
 
 SOURCES +=  main.cpp\
+            languagedialog.cpp \
             mainwindow.cpp \
             aboutdialog.cpp \
             setting.cpp \
@@ -22,6 +23,7 @@ SOURCES +=  main.cpp\
 
 HEADERS  += mainwindow.h \
             aboutdialog.h \
+            languagedialog.h \
             treeitem.h \
             treemodel.h \
             version.h \
@@ -30,10 +32,16 @@ HEADERS  += mainwindow.h \
             sourcenode.h
 
 FORMS    += mainwindow.ui \
-            aboutdialog.ui
+            aboutdialog.ui \
+            languagedialog.ui
 
 RESOURCES += \
             resources.qrc
+
+include(translation.pri)
+
+TRANSLATIONS =  translation/qml_vi.ts \
+                translation/qml_en.ts
 
 win32:RC_FILE = F2AGenerator.rc
 

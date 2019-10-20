@@ -29,7 +29,11 @@ modification, are permitted provided that the following conditions are met:
 #include "treemodel.h"
 
 #include "setting.h"
+
 #include "aboutdialog.h"
+#include "languagedialog.h"
+
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -39,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 
     _highlighter = new Highlighter(ui->txtSourceCode->document());
+    _currentLanguage = 0;
 
     QFont font;
     font.setFamily("Courier");
@@ -81,6 +86,37 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_actionLanguage_triggered()
+{
+    LanguageDialog *language = new LanguageDialog(this);
+
+    connect(language, SIGNAL(languageChanged(QString)), this, SLOT(selectLanguage(QString)));
+
+    language->setCurrentLanguage(_currentLanguage);
+
+    language->show();
+}
+
+void MainWindow::selectLanguage(QString language)
+{
+    // remove the old translator
+     qApp->removeTranslator(&_translator);
+
+    if (language == QString("vi_VN")) { //Vietnamese
+        _translator.load(":/flowchart/translation/qml_vi.qm");
+
+        _currentLanguage = 1;
+    } else if (language == QString("en_US")){ //English
+        _translator.load(":/flowchart/translation/qml_en.qm");
+
+        _currentLanguage = 0;
+    }
+
+    qApp->installTranslator(&_translator);
+
+    this->update();
 }
 
 void MainWindow::on_actionAbout_triggered()

@@ -23,6 +23,7 @@ modification, are permitted provided that the following conditions are met:
 
 #include <QMainWindow>
 #include <QTreeWidget>
+#include <QTranslator>
 
 #include "highlighter.h"
 
@@ -51,7 +52,10 @@ private slots:
 
     void on_btnGenerate_clicked();
 
+    void on_actionLanguage_triggered();
+
 public slots:
+    void selectLanguage(QString language);
 
 private:
     bool parseTree(SourceNode *node);
@@ -62,8 +66,11 @@ private:
     Ui::MainWindow *ui;
 
     Highlighter *_highlighter;
+    QTranslator _translator;
 
     QString _sourceName;
+
+    int _currentLanguage;
 
 };
 

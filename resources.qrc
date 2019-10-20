@@ -9,5 +9,14 @@
         <file>images/trash.png</file>
         <file>images/info.png</file>
         <file>styles/stylesheet.qss</file>
+        <file>translation/qml_vi.qm</file>
+        <file>translation/qml_en.qm</file>
+        <file>images/translate.png</file>
+        <file>images/language/america.png</file>
+        <file>images/language/england.png</file>
+        <file>images/language/france.png</file>
+        <file>images/language/germany.png</file>
+        <file>images/language/spain.png</file>
+        <file>images/language/vietnam.png</file>
     </qresource>
 </RCC>
