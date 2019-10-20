@@ -42,20 +42,16 @@ void LanguageDialog::setCurrentLanguage(int language)
     }
 }
 
-void LanguageDialog::on_rbnEnglish_toggled(bool checked)
+void LanguageDialog::on_rbnEnglish_clicked()
 {
-    if (checked) {
-        emit languageChanged("en_US");
+    emit languageChanged("en_US");
 
-        this->close();
-    }
+    this->close();
 }
 
-void LanguageDialog::on_rbnVietnamese_toggled(bool checked)
+void LanguageDialog::on_rbnVietnamese_clicked()
 {
-    if (checked) {
-        emit languageChanged("vi_VN");
+    emit languageChanged("vi_VN");
 
-        this->close();
-    }
+    this->close();
 }

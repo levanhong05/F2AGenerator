@@ -38,9 +38,9 @@ public:
     void setCurrentLanguage(int language);
 
 private slots:
-    void on_rbnEnglish_toggled(bool checked);
+    void on_rbnEnglish_clicked();
 
-    void on_rbnVietnamese_toggled(bool checked);
+    void on_rbnVietnamese_clicked();
 
 signals:
     void languageChanged(QString language);

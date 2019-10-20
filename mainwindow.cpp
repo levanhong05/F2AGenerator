@@ -116,7 +116,7 @@ void MainWindow::selectLanguage(QString language)
 
     qApp->installTranslator(&_translator);
 
-    this->update();
+    ui->retranslateUi(this);
 }
 
 void MainWindow::on_actionAbout_triggered()
